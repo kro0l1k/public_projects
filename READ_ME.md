@@ -34,4 +34,5 @@ Namely, let's assume we have the tree of allowed moves for the game of chess. Th
 
 This has, in my opinion, significant implications for the interesting driving case: how long do we have to observe another driver on the road to be able to determine that they are not adhering to the rules of the road, that their loss functions if optimal control is not what we expected, and most importantly how the agent is supposed to act in the presence of this anomaly to not break the 'changed rules of the road' and avoid potential crashes with the odd driver.
 
-3. I will not focus here on the computer vision aspect of the challenge, but rather treat it as a more continuous example of the changed chess game. Infering the changed rules of the game is part of my thesis, and I think I will be able to convey my ideas more clearly about this once I develop the first two points from this file better. 
+3.
+I will not focus here on the computer vision aspect of the challenge, but rather treat it as a more continuous example of the changed chess game. Infering the changed rules of the game is part of my thesis, and I think I will be able to convey my ideas more clearly about this once I develop the first two points from this file better. 
