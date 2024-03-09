@@ -13,9 +13,13 @@ Furthermore, I will assume that will try to compare how different levels of expl
 
 1.
 I will therefore construct a model-free approach for tic-tac-toe I will put the tightest constraints on the attanable information for offline training: I will assume the agent can only access 'snapshots' of the board. Not even singular moves, but a set of 3x3 pictures like:
+
 ..X   X.O
+
 .O.   OX.
+
 ..X   O.X
+
 and from them construct the graph of allowed moves of the game. The code for this is available in tic-tac-toe.ipynb 
 
 To make this example more useful, I would like to add self-supervised learning to the mix here to aid in capturing different modalities of moves for more complicated games. These difficulties do not occur in tic-tac-toe, but in the harder examples, for instance, I would like to capture offline the different moves of a bishop, knight, or a rook, to capture better 'close' states of the board, before applying the persistence homology algorithm.
