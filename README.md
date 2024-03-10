@@ -4,7 +4,7 @@
 To approach this question I have tried to analyze its challenges one by one. Below I will focus on three examples where learning from observation will be of use: 
 1. **Learning how to play tic-tac-toe**
 2. **Learning how to play variants of chess**
-3. **Learning how to predict the behaviour of surrounding cars**
+3. **Learning how to predict the behaviour of nearby cars**
 
 Without much hassle, if we were given a tree of allowed steps in the games of tic-tac-toe and chess we would be able to use Reinforcement Learning, but this would not yield any interesting results for the car problem. So I will try to approach the first two problems in a bit atypical manner. I assume that during training, the agent is allowed to 'sit in the passenger seat', meaning they will have access to a large number of trajectories in the environment. This is significantly different from sitting behind the wheel, as the agent is not able to see what exactly his options for placing an 'X', moving a knight, or turning the steering wheel are, and what the immediate consequences of his actions will be. The passenger seat, or offline, training is relatively cheap, as we do not pose any hazard to the environment, and if need be, we can let the agent watch thousands of tic-tac-toe or chess matches, and use large amounts of sensor data from modern cars and driver.
 
@@ -35,13 +35,14 @@ Namely, let's assume we have the tree of allowed moves for the game of chess. Th
 This has, in my opinion, significant implications for the interesting driving case: how long do we have to observe another driver on the road to be able to determine that they are not adhering to the rules of the road, that their loss functions if optimal control is not what we expected, and most importantly how the agent is supposed to act in the presence of this anomaly to not break the 'changed rules of the road' and avoid potential crashes with the odd driver.
 
 3. # Learning the parameters of the utility and loss functions of an agent.
-I will not focus here on the computer vision aspect of the challenge, but rather treat it as a more continuous example of the changed chess game. For instance, let us consider an adapted example from Dr. Kalise's Optimization class at Imperial: 
+I will not focus here on the computer vision aspect of the challenge, but rather treat it as an optimal control problem in a multi-agent setting. For instance, let us consider an adapted example from Dr. Kalise's Optimization class at Imperial, which will correspond the behaviour of a car trying to do a $180 \degree$ turn around the poing $$(0.5, 0)$: 
 
-Consider a boat moving in $\mathbb{R}^2$, from the starting point $x(0) = y(0) = 0$ to the endpoint $x(1) = 1, y(1) = 0$ with the model: 
+Consider a car moving in $\mathbb{R}^2$, from the starting point $x(0) = y(0) = 0$ to the endpoint $x(1) = 1, y(1) = 0$ with the following model of its dynamics: 
 
 $$ \bar{x}' = f(\bar{x}(t), u(t)) = \begin{bmatrix} V cos(u) \\ V sin(u) \end{bmatrix} $$
 
-where $V > 0$ is a constant (velocity), and the control variable $u$ corresponds to its direction. Let us assume the driver wants to minimize the time spent around the apex of the corner (low values of y), which can be expressed by the loss function as $$J = \int_0^1 y dt $$. One can show that a trajectory satisfying the Pontryagin Minimum Principle (so a solution to the optimal control problem) will satisfy: $tan(u(t)) = At + b $ for some real values A, B. 
+where $V > 0$ is a constant (velocity), and the control variable $u$ corresponds to its direction. Let us assume the driver wants to minimize the time spent around the apex of the corner (low values of y), which can be expressed by the loss function as $$J = C \cdot \int_0^1 y dt $$, for a fixed $C>0$. One can show that a trajectory satisfying the Pontryagin Minimum Principle (so a solution to the optimal control problem) will satisfy: $tan(u(t)) = At + b$ for some real values $A, B$. 
 
 The research question I would like to work on next is: 
-Given a sample trajectory: X[t] how quickly can we infer the parameters of his loss function (i.e. the parameter C) and establish that the loss function of this agent is different from our prior assumption (i.e. there might be another term like $||u||_{L_1}, or a variety of other terms of $x(t), u(t)$ in J), how quickly can we model these terms, and act upon it in the presence of uncertainty i.e. optimize our strategy for taking the corner, in case our result also depends on the trajectory of the observed car. 
+Given an observed trajectory of another car: $X[t]$ how quickly can we infer the parameters of its loss function (for instance, the parameter $C$) and establish that the loss function of this agent is different from our prior assumption (i.e. there might be another term like $||u||_{L_1}, or a variety of other terms of $x(t), u(t)$ in the loss function $J$), how quickly can we model these terms, and act upon it in the presence of uncertainty i.e. optimize our strategy for taking the corner, in case our result also depends on the trajectory of the observed car. 
+
