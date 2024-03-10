@@ -4,7 +4,7 @@
 To approach this question I have tried to analyze its challenges one by one. Below I will focus on three examples where learning from observation will be of use: 
 1. **Learning how to play tic-tac-toe**
 2. **Learning how to play variants of chess**
-3. **Learning how to drive a car**
+3. **Learning how to predict the behaviour of surrounding cars**
 
 Without much hassle, if we were given a tree of allowed steps in the games of tic-tac-toe and chess we would be able to use Reinforcement Learning, but this would not yield any interesting results for the car problem. So I will try to approach the first two problems in a bit atypical manner. I assume that during training, the agent is allowed to 'sit in the passenger seat', meaning they will have access to a large number of trajectories in the environment. This is significantly different from sitting behind the wheel, as the agent is not able to see what exactly his options for placing an 'X', moving a knight, or turning the steering wheel are, and what the immediate consequences of his actions will be. The passenger seat, or offline, training is relatively cheap, as we do not pose any hazard to the environment, and if need be, we can let the agent watch thousands of tic-tac-toe or chess matches, and use large amounts of sensor data from modern cars and driver.
 
