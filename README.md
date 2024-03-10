@@ -41,7 +41,7 @@ Consider a boat moving in $\mathbb{R}^2$, from the starting point $x(0) = y(0) =
 
 $$ \bar{x}' = f(\bar{x}(t), u(t)) = \begin{bmatrix} V cos(u) \\ V sin(u) \end{bmatrix} $$
 
-where $V > 0 $ is a constant (velocity), and the control variable $u$ corresponds to the direction of the velocity.  Let us assume the driver wants to minimize the time spent around the apex of the corner (low values of y), which can be expressed by the loss function as $$J = \int_0^1 y dt $$. One can show that a trajectory satisfying the Pontryagin Minimum Principle will satisfy: $tan(u(t)) = At + b $ for some real values A, B. 
+where $V > 0$ is a constant (velocity), and the control variable $u$ corresponds to its direction. Let us assume the driver wants to minimize the time spent around the apex of the corner (low values of y), which can be expressed by the loss function as $$J = \int_0^1 y dt $$. One can show that a trajectory satisfying the Pontryagin Minimum Principle (so a solution to the optimal control problem) will satisfy: $tan(u(t)) = At + b $ for some real values A, B. 
 
 The research question I would like to work on next is: 
 Given a sample trajectory: X[t] how quickly can we infer the parameters of his loss function (i.e. the parameter C) and establish that the loss function of this agent is different from our prior assumption (i.e. there might be another term like $||u||_{L_1}, or a variety of other terms of $x(t), u(t)$ in J), how quickly can we model these terms, and act upon it in the presence of uncertainty i.e. optimize our strategy for taking the corner, in case our result also depends on the trajectory of the observed car. 
