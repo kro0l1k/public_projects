@@ -1,5 +1,5 @@
 ### One of the most pressing research questions in the field of AI of our time is in my opinion learning from observation of the real-world data.
- How come 17-year-olds can drive just after 20 hours of tuition, yet self-driving cars elude even the smartest tech companies? 
+ How come 17-year-olds can drive just after 20 hours of tuition, yet fully self-driving cars are still a work in progress? 
 
 To approach this question I have tried to analyze its challenges one by one. Below I will focus on three examples where learning from observation will be of use: 
 1. **Learning how to play tic-tac-toe**
